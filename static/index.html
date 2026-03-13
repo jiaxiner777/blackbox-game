@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKYLINE TYCOON — 黑盒挑战</title>
+  <meta name="description" content="街机风格接雨水黑盒解谜游戏，多人联机排行榜。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<!-- CRT 扫描线叠层 -->
+<div class="crt-overlay" aria-hidden="true"></div>
+
+<!-- ══════════════ 开始界面 ══════════════ -->
+<div id="start-screen" class="screen active">
+  <div class="start-inner">
+
+    <div class="logo-wrap">
+      <div class="logo-flicker">SKYLINE TYCOON</div>
+      <div class="logo-sub">天 际 线 大 亨 ·  黑 盒 挑 战</div>
+      <div class="coin-blink">— INSERT COIN —</div>
+    </div>
+
+    <!-- 内容区：双列并排 -->
+    <div class="panels-row">
+
+      <!-- 规则（左列） -->
+      <div class="rules-panel">
+        <div class="rules-title">HOW TO PLAY</div>
+        <div class="rules-body">
+          <p>① 点击两根柱子 → 交换位置</p>
+          <p>② 柱子高度隐藏，只能看水量涨跌</p>
+          <p>③ 达到理论最大蓄水量即可过关 💧</p>
+          <p>④ 每次交换固定消耗 1 步，过关可获奖励步数</p>
+        </div>
+      </div>
+
+      <!-- 排行榜（右列） -->
+      <div class="lb-panel">
+        <div class="lb-title">🏆 HIGH SCORE</div>
+        <div id="start-lb-list" class="lb-list">
+          <div class="lb-empty">NO RECORDS YET</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 输入名字 -->
+    <div class="input-row">
+      <input id="player-name-input" class="name-input" type="text"
+             maxlength="16" placeholder="ENTER YOUR NAME" autocomplete="off" />
+      <button id="start-btn" class="btn-insert" onclick="startGame()">
+        START ►
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════ 游戏界面 ══════════════ -->
+<div id="game-screen" class="screen">
+
+  <!-- 顶部 HUD -->
+  <div class="hud">
+    <div class="hud-item">
+      <span class="hud-label">PLAYER</span>
+      <span class="hud-val" id="hud-player">---</span>
+    </div>
+    <div class="hud-item">
+      <span class="hud-label">LEVEL</span>
+      <span class="hud-val neon-yellow" id="hud-level">01</span>
+    </div>
+    <div class="hud-item">
+      <span class="hud-label">STEPS</span>
+      <span class="hud-val neon-green" id="hud-steps">15</span>
+    </div>
+    <div class="hud-item">
+      <span class="hud-label">💧 WATER</span>
+      <span class="hud-val neon-cyan" id="hud-water">0</span>
+    </div>
+    <button class="btn-quit" onclick="quitGame()">QUIT</button>
+  </div>
+
+  <!-- 主游戏区 -->
+  <div class="game-body">
+
+    <!-- 柱子 -->
+    <div class="board-wrap">
+      <div class="feedback-bar" id="feedback-bar"></div>
+      <div id="columns-area" class="columns-area"></div>
+      <div class="hint-text">← 点击第一根柱子，再点第二根，完成交换 →</div>
+    </div>
+
+    <!-- 侧边排行榜 -->
+    <div class="sidebar">
+      <div class="lb-panel">
+        <div class="lb-title">🏆 TOP 5</div>
+        <div id="game-lb-list" class="lb-list">
+          <div class="lb-empty">NO RECORDS YET</div>
+        </div>
+      </div>
+
+      <!-- 图例 -->
+      <div class="legend-panel">
+        <div class="legend-title">LEGEND</div>
+        <div class="legend-item"><span class="swatch swatch-normal"></span>普通柱子</div>
+        <div class="legend-item"><span class="swatch swatch-selected"></span>已选中</div>
+        <div class="legend-item"><span class="swatch swatch-revealed"></span>揭晓高度</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════ 结算弹窗 ══════════════ -->
+<div id="overlay" class="overlay hidden" role="dialog" aria-modal="true">
+  <div class="overlay-box">
+    <div class="overlay-title" id="ov-title"></div>
+    <div class="overlay-sub"  id="ov-sub"></div>
+    <div class="overlay-info" id="ov-info"></div>
+    <div class="overlay-btns">
+      <button id="ov-btn-primary"   class="btn-insert" onclick="overlayPrimary()"></button>
+      <button id="ov-btn-secondary" class="btn-quit"   onclick="overlaySecondary()">🏠 返回主菜单</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/game.js"></script>
+</body>
+</html>
