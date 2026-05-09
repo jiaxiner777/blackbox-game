@@ -1,10 +1,31 @@
-package main
+package web
 
 import (
+	"blackbox-game/internal/game"
+	"blackbox-game/internal/store"
 	"encoding/json"
 	"net/http"
 	"strings"
 	"time"
+)
+
+type SessionManager = game.SessionManager
+type GameState = game.GameState
+type Leaderboard = store.Leaderboard
+
+const (
+	StatusPlaying  = game.StatusPlaying
+	StatusWonLevel = game.StatusWonLevel
+	StatusGameOver = game.StatusGameOver
+	StepsReward    = game.StepsReward
+)
+
+var (
+	NewSessionManager = game.NewSessionManager
+	NewGameState      = game.NewGameState
+	generateSessionID = game.GenerateSessionID
+	trap              = game.Trap
+	initLevel         = game.InitLevel
 )
 
 // Server HTTP 服务器，持有会话管理器和排行榜

@@ -1,4 +1,4 @@
-package main
+package cli
 
 import "fmt"
 
@@ -21,7 +21,7 @@ func RenderBlackBox(heights []int, currentWater int, isWin bool, steps int) {
 	for i := 0; i < len(heights); i++ {
 		fmt.Printf(" [%d] ", i)
 	}
-	fmt.Println("\n")
+	fmt.Println()
 
 	// 打印柱子状态
 	fmt.Print("高度:   ")

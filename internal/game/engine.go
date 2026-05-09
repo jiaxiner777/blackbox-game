@@ -1,4 +1,4 @@
-package main
+package game
 
 // trap 计算当前的接雨水量 (LeetCode 42 完美版)
 // 这是游戏的“记分员”，负责判断当前局面是多少分

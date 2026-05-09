@@ -1,6 +1,8 @@
 package main
 
 import (
+	"blackbox-game/internal/store"
+	"blackbox-game/internal/web"
 	"fmt"
 	"log"
 	"math/rand"
@@ -11,8 +13,8 @@ import (
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
-	lb := LoadLeaderboard()
-	srv := NewServer(lb)
+	lb := store.LoadLeaderboard()
+	srv := web.NewServer(lb)
 
 	localIP := getLocalIP()
 
