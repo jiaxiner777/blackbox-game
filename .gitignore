@@ -1,3 +1,5 @@
-blackbox-game
-main
-.DS_Store
+﻿/blackbox-game
+/main
+/blackbox-game.exe
+/.gocache/
+/.DS_Store

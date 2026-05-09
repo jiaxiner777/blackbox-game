@@ -1,4 +1,4 @@
-package main
+package game
 
 import (
 	"fmt"
@@ -29,13 +29,13 @@ type GameState struct {
 	Level             int        `json:"level"`
 	CurrentSteps      int        `json:"current_steps"`
 	N                 int        `json:"n"`
-	Heights           []int      `json:"heights"`     // 始终传输，前端决定是否显示
-	TargetScore       int        `json:"-"`           // 服务端私有，不发送给客户端
+	Heights           []int      `json:"heights"` // 始终传输，前端决定是否显示
+	TargetScore       int        `json:"-"`       // 服务端私有，不发送给客户端
 	CurrentWater      int        `json:"current_water"`
 	LastWater         int        `json:"-"`
 	Status            GameStatus `json:"status"`
 	Feedback          string     `json:"feedback"`
-	Revealed          bool       `json:"revealed"`    // true 时前端显示真实高度
+	Revealed          bool       `json:"revealed"`            // true 时前端显示真实高度
 	TargetScoreReveal int        `json:"target_score_reveal"` // 只在结算时有意义
 }
 
